@@ -1,0 +1,300 @@
+{% extends "account.master_no_header" %}
+
+{% block user_area %}
+
+         <section class="seller-profile">
+             <!--<div class="seller__dashboard-pop-message">
+                 <span id="close-pop-message">&times;</span>
+                 <p>Subscription Successful</p>
+             </div>  -->
+             <div class="seller-profile__started seller__dashboard-wrapper pb-5">
+                 <div class="user-personal__top pt-2">
+                     <p class="user-personal__heading m-0 text-uppercase">Summary</p>
+                     <hr class="user-personal__heading-divider">
+                 </div>
+                 <div class="seller__dashboard-content">
+                     <div class="seller__dashboard-content-individual">
+                         <span class="seller__dashboard-content-individual-head">Total  Orders</span>
+                         <svg class="icon icon-information float-right">
+                             <use xlink:href="#icon-information"></use>
+                         </svg>
+                         <p class="seller__dashboard-content-individual-head-figure" style="color:#fc0000">{{ daysdiff['today'] +  daysdiff['yesterday'] + daysdiff['old']  }}</p>
+
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Today</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ daysdiff['today']   }}</span>
+                         </div>
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Yesterday</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ daysdiff['yesterday'] }}</span>
+                         </div>
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Older</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ daysdiff['old'] }}</span>
+                         </div>
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Current daily order volume limitation</p>
+                             {#<span class="seller__dashboard-content-individual-sections-figure">1000</span>#}
+                         </div>
+                     </div>
+
+                     <div class="seller__dashboard-content-individual">
+                         <span class="seller__dashboard-content-individual-head">Your ratings</span>
+                         <svg class="icon icon-information float-right">
+                             <use xlink:href="#icon-information"></use>
+                         </svg>
+                         <p class="seller__dashboard-content-individual-head-figure" style="visibility:hidden" style="color:#fc0000">0</p>
+
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Cancellation Rate</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ total_declined_orders }}</span>
+                         </div>
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Shipping in 48 Hours</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ shipping_orders48 }}</span>
+                         </div>
+                         {#<div class="seller__dashboard-content-individual-sections">#}
+                             {#<p class="seller__dashboard-content-individual-head">Quality Score</p>#}
+                             {#<span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">0</span>#}
+                         {#</div>#}
+                         <div class="seller__dashboard-content-individual-sections">
+                         </div>
+                     </div>
+
+                     <div class="seller__dashboard-content-individual">
+                    <span class="seller__dashboard-content-individual-head">Best Selling Product <br> Sales
+                        Contribution</span>
+                         <svg class="icon icon-information float-right">
+                             <use xlink:href="#icon-information"></use>
+                         </svg>
+                         <p class="seller__dashboard-content-individual-head-figure" style="color:#fc0000"><br></p>
+
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Best Selling Product <br>(Low Stock Level)</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ bestSellingProducts[0]['count'] }}</span>
+                         </div>
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Total Out of Stock</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ outOfStock }}</span>
+                         </div>
+                         <div class="seller__dashboard-content-individual-sections">
+                         </div>
+                         <div class="seller__dashboard-content-individual-sections">
+                         </div>
+                     </div>
+
+                     <div class="seller__dashboard-content-individual">
+                    <span class="seller__dashboard-content-individual-head">New Product Created <br> in the last 14
+                        days</span>
+                         <svg class="icon icon-information float-right">
+                             <use xlink:href="#icon-information"></use>
+                         </svg>
+                         <p class="seller__dashboard-content-individual-head-figure" style="color:#fc0000">{{ newlyCreatedProducts }}</p>
+
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Rejected Products <br>
+                                 (Poor Quality)</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ rejected_products_quality   }}</span>
+                         </div>
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Rejected Product <br>
+                                 (Missing Image)</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ rejected_products_photo }}</span>
+                         </div>
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Approved Products</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ no_approve_products }}</span>
+                         </div>
+                         <div class="seller__dashboard-content-individual-sections">
+                             <p class="seller__dashboard-content-individual-head">Pending Products</p>
+                             <span class="seller__dashboard-content-individual-sections-figure" style="color:#fc0000">{{ no_decline_products }}</span>
+                         </div>
+                     </div>
+                 </div>
+
+                 <!-- announcement -->
+                 {#<div class="seller__dashboard-content mt-5">#}
+                     {#<div class="seller__dashboard-announcement w-50 mr-2">#}
+                         {#<div class="user-personal__top p-0">#}
+                             {#<p class="user-personal__heading m-0 text-uppercase">Announcements</p>#}
+                             {#<hr class="user-personal__heading-divider">#}
+                         {#</div>#}
+                         {#<div class="seller__dashboard-announcement-wrapper">#}
+                             {#<div class="seller__dashboard-announcement-individual" data-toggle="modal" data-target="#announcementModal">#}
+                                 {#<div class="seller__dashboard-announcement-individual-date">#}
+                                     {#<p>15-01-2019</p>#}
+                                 {#</div>#}
+                                 {#<div class="seller__dashboard-announcement-individual-details">#}
+                                     {#<h3>SLA Agreement</h3>#}
+                                     {#<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse, alias. Molestiae#}
+                                         {#sit#}
+                                         {#nostrum in exercitationem, expedita neq</p>#}
+                                 {#</div>#}
+                             {#</div>#}
+                             {#<div class="seller__dashboard-announcement-individual" data-toggle="modal" data-target="#announcementModal">#}
+                                 {#<div class="seller__dashboard-announcement-individual-date">#}
+                                     {#<p>15-01-2019</p>#}
+                                 {#</div>#}
+                                 {#<div class="seller__dashboard-announcement-individual-details">#}
+                                     {#<h3>SLA Agreement</h3>#}
+                                     {#<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse, alias. Molestiae#}
+                                         {#sit#}
+                                         {#nostrum in exercitationem, expedita neq</p>#}
+                                 {#</div>#}
+                             {#</div>#}
+                             {#<div class="seller__dashboard-announcement-individual" data-toggle="modal" data-target="#announcementModal">#}
+                                 {#<div class="seller__dashboard-announcement-individual-date">#}
+                                     {#<p>15-01-2019</p>#}
+                                 {#</div>#}
+                                 {#<div class="seller__dashboard-announcement-individual-details">#}
+                                     {#<h3>SLA Agreement</h3>#}
+                                     {#<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse, alias. Molestiae#}
+                                         {#sit#}
+                                         {#nostrum in exercitationem, expedita neq</p>#}
+                                 {#</div>#}
+                             {#</div>#}
+                             {#<div class="seller__dashboard-announcement-individual" data-toggle="modal" data-target="#announcementModal">#}
+                                 {#<div class="seller__dashboard-announcement-individual-date">#}
+                                     {#<p>15-01-2019</p>#}
+                                 {#</div>#}
+                                 {#<div class="seller__dashboard-announcement-individual-details">#}
+                                     {#<h3>SLA Agreement</h3>#}
+                                     {#<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse, alias. Molestiae#}
+                                         {#sit#}
+                                         {#nostrum in exercitationem, expedita neq</p>#}
+                                 {#</div>#}
+                             {#</div>#}
+                             {#<div class="seller__dashboard-announcement-individual" data-toggle="modal" data-target="#announcementModal">#}
+                                 {#<div class="seller__dashboard-announcement-individual-date">#}
+                                     {#<p>15-01-2019</p>#}
+                                 {#</div>#}
+                                 {#<div class="seller__dashboard-announcement-individual-details">#}
+                                     {#<h3>SLA Agreement</h3>#}
+                                     {#<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse, alias. Molestiae#}
+                                         {#sit#}
+                                         {#nostrum in exercitationem, expedita neq</p>#}
+                                 {#</div>#}
+                             {#</div>#}
+                         {#</div>#}
+                     {#</div>#}
+                     {#<div class="seller__dashboard-chart w-50">#}
+                         {#<div class="user-personal__top p-0">#}
+                             {#<nav class="h-auto">#}
+                                 {#<div class="nav seller__dashboard-chart-tab-wrapper" id="nav-tab" role="tablist">#}
+                                     {#<a class="nav-item seller__dashboard-chart-tab text-capitalize active" id="nav-sales-summary-tab"#}
+                                        {#data-toggle="tab" href="#nav-sales-summary" role="tab" aria-controls="nav-sales-summary"#}
+                                        {#aria-selected="true"><span class="sales-summary-tab">Sales Summary</span>#}
+                                         {#<hr class="seller__dashboard-chart-tab-line user-personal__heading-divider">#}
+                                     {#</a>#}
+                                     {#<a class="nav-item seller__dashboard-chart-tab text-capitalize" id="nav-order-volume-tab"#}
+                                        {#data-toggle="tab" href="#nav-order-volume" role="tab" aria-controls="nav-order-volume"#}
+                                        {#aria-selected="false"><span class="volume-chart-tab">Order Volume</span>#}
+                                         {#<hr class="seller__dashboard-chart-tab-line user-personal__heading-divider">#}
+                                     {#</a>#}
+                                     {#<a class="nav-item seller__dashboard-chart-tab text-capitalize" id="nav-your-payment-tab"#}
+                                        {#data-toggle="tab" href="#nav-your-payment" role="tab" aria-controls="nav-your-payment"#}
+                                        {#aria-selected="false"><span class="your-payment-tab">Your Payment</span>#}
+                                         {#<hr class="seller__dashboard-chart-tab-line user-personal__heading-divider">#}
+                                     {#</a>#}
+                                 {#</div>#}
+                                 {#<hr class="user-personal__heading-divider">#}
+                             {#</nav>#}
+                             {#<div class="tab-content" id="nav-tabContent">#}
+                                 {#<div class="tab-pane fade show active" id="nav-sales-summary" role="tabpanel"#}
+                                      {#aria-labelledby="nav-sales-summary-tab">#}
+                                     {#<div class="seller__dashboard-chart-wrapper">#}
+                                         {#<canvas id="salesSummaryChart" width="500" height="530" class="w-100 h-auto"></canvas>#}
+                                     {#</div>#}
+                                 {#</div>#}
+                                 {#<div class="tab-pane fade" id="nav-order-volume" role="tabpanel" aria-labelledby="nav-order-volume-tab">#}
+                                     {#<div class="seller__dashboard-chart-wrapper">#}
+                                         {#<canvas id="orderVolumeChart" width="500" height="530" class="w-100 h-auto"></canvas>#}
+                                     {#</div>#}
+                                 {#</div>#}
+                                 {#<div class="tab-pane fade" id="nav-your-payment" role="tabpanel" aria-labelledby="nav-your-payment-tab">#}
+                                     {#<div class="seller__dashboard-chart-wrapper">#}
+                                         {#<canvas id="yourPaymentChart" width="500" height="530" class="w-100 h-auto"></canvas>#}
+                                     {#</div>#}
+                                 {#</div>#}
+                             {#</div>#}
+                         {#</div>#}
+                     {#</div>#}
+                 {#</div>#}
+             </div>
+         </section>
+
+         <!-- Announcement Modal -->
+         <div class="modal fade verify-bank__modal" id="announcementModal" tabindex="-1" role="dialog" aria-labelledby="announcementModalLabel"
+              aria-hidden="true">
+             <div class="modal-dialog" role="document">
+                 <div class="modal-content seller__dashboard-announcement-modal-content">
+                     <div class="modal-header border-bottom-0">
+                         <div class="seller__dashboard-announcement-modal-heading">
+                             <small class="">15-01-2019</small>
+                             <h5 class="modal-title" id="exampleModalLabel">SLA Agreement</h5>
+                         </div>
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                         </button>
+                     </div>
+                     <hr class="seller__dashboard-announcement-modal-divider">
+
+                     <div class="modal-body seller__dashboard-announcement-modal-body">
+                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                             laboris nisi ut aliquip ex ea commodo consequat.</p>
+                     </div>
+                     <div class="modal-footer seller__dashboard-announcement-modal-footer">
+                         <div class="d-flex">
+                             <div class="seller__dashboard-announcement-modal-previous">
+                                 <svg class="icon icon-arrow-next">
+                                     <use xlink:href="#icon-arrow-next"></use>
+                                 </svg>
+                             </div>
+                             <div class="seller__dashboard-announcement-modal-next active-modal">
+                                 <svg class="icon icon-arrow-next">
+                                     <use xlink:href="#icon-arrow-next"></use>
+                                 </svg>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+{% endblock %}
+ {% block page_extrajs %}
+     <script>
+         $('#how-it-works-next').on('click', function () {
+             $('#nav-how-it-works-tab').click();
+             $('#nav-terms-tab').addClass('seller-profile__started-tab-active');
+         })
+         $('#valid-id-next').click(function () {
+             $('#nav-valid-id-tab').click();
+             $('#nav-how-it-works-tab').addClass('seller-profile__started-tab-active');
+         })
+         $('#upload-profile-next').on('click', function () {
+             $('#nav-profile-pics-tab').click();
+             $('#nav-valid-id-tab').addClass('seller-profile__started-tab-active');
+         })
+         $('#verify-bank-next').on('click', function () {
+             $('#nav-verify-bank-tab').click();
+             $('#nav-profile-pics-tab').addClass('seller-profile__started-tab-active');
+             $('#nav-verify-bank-tab').addClass('seller-profile__started-tab-active');
+         })
+     </script>
+     <script src="{{ asset('themes/' ~  current_theme()  ~ '/seller/assets/js/dropzone.js') }}"></script>
+
+     <script>
+         $("[type=file]").on("change", function () {
+             // Name of file and placeholder
+             var file = this.files[0].name;
+             var dflt = $(this).attr("placeholder");
+             if ($(this).val() != "") {
+                 $(this).next().text(file);
+             } else {
+                 $(this).next().text(dflt);
+             }
+         });
+     </script>
+ {% endblock %}
