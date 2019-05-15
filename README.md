@@ -9,3 +9,6 @@ https://edeco1.atlassian.net/projects/UMS/issues/UMS-168?filter=myopenissues&ord
 
 
 https://edeco1.atlassian.net/projects/UMS/issues/UMS-168?filter=myopenissues&orderby=priority%20DESC
+
+
+https://drive.google.com/open?id=1kyHdoPW9k1Qi4GzLI68VH_Z5Zr2rNzU2
